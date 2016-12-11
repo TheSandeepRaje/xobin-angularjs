@@ -26,14 +26,19 @@ function MyController($scope,DataSource) {
 
   var post_file = "../xml/Posts.xml";
   var badge_file = "../xml/Badges.xml";
+  var users_file = "../xml/Users.xml";
+  var comments_file = "../xml/Comments.xml";
 
   xmlTransform = function(data) {
     console.log("transform data");
     var x2js = new X2JS();
     var json = x2js.xml_str2json( data );
+    // Local storage commented due to cache size exception
     // window.localStorage['LocalPosts'] = angular.toJson(json.posts.row);
     // var accessData = window.localStorage['LocalPosts'];
     // console.log(json.posts.row);
+    // return json.users.row;
+    // return json.comments.row;
     return json.posts.row;
     // return accessData;
   };
@@ -63,11 +68,3 @@ function OtherController($scope) {
 
 myApp.controller('MyController', MyController);
 myApp.controller('OtherController', OtherController);
-myApp.filter("getOwner", function(){
-   return function(input){
-      // MyController('MyController', MyController);
-      console.log(input);
-      output = "Hello";
-      return output;
-   }
-});
